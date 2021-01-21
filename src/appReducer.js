@@ -1,7 +1,12 @@
-const appReducer = (state = {player: []}, action) => {
+const appReducer = (state = {player: 0}, action) => {
   switch (action.type) {
-    case 'CREATE_PLAYER':
-      debugger
+    case 'ADD_PLAYER':
+      
+      return {
+        player: action.user.id
+      }
+
+
     // eslint-disable-next-line
     default:
       return state

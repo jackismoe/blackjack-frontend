@@ -9,12 +9,7 @@ export default class Login extends React.Component {
     console.log(event.target[0].value)
     console.log(event.target[1].value)
 
-    const player = {
-      name: event.target[0].value,
-      password: event.target[1].value
-    }
-
-    const findPlayer = () => {
+    const findPlayer = (player) => {
       fetch(`${BASE_URL}/sessions`, {
         method: 'POST',
         headers: {
@@ -27,7 +22,9 @@ export default class Login extends React.Component {
       .then(response => response.json())
       .then(jsonResponse => {
         // deal with player
-        console.log(jsonResponse)
+        sessionStorage.setItem('userId', jsonResponse.id)
+        sessionStorage.setItem('username', jsonResponse.username)
+        this.props.history.push('/loading')
       })
       .catch(error => {
         document.querySelector('.login').reset()
@@ -35,6 +32,10 @@ export default class Login extends React.Component {
       })
     }
 
+    const player = {
+      name: event.target[0].value,
+      password: event.target[1].value
+    }
 
     findPlayer(player)
   }

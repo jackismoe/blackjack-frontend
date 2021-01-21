@@ -1,0 +1,65 @@
+.game {
+  background-color: black;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 4fr 1fr;
+  height: 950px
+}
+
+.dealer{
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.player {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bets {
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.dealerCardOne {
+  background-color: white;
+  height: 220px;
+  width: 154px;
+  border: 2px solid black;
+  background-image: url('./images/card.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.dealerCardTwo {
+  background-color: white;
+  height: 220px;
+  width: 154px;
+  border: 2px solid black;
+  background-image: url('./images/card.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+
+}
+.playerCardOne {
+  background-color: white;
+  height: 220px;
+  width: 154px;
+  border: 2px solid black;
+  background-image: url('./images/card.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+
+}
+.playerCardTwo {
+  background-color: white;
+  height: 220px;
+  width: 154px;
+  border: 2px solid black;
+  background-image: url('./images/card.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+
+}

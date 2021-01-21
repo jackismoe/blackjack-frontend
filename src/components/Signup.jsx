@@ -7,11 +7,6 @@ export default class Login extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
     if (event.target[1].value == event.target[2].value) {
-      const player = {
-        name: event.target[0].value,
-        password: event.target[1].value
-      }
-  
       const createPlayer = (player) => {
         fetch(`${BASE_URL}/users`, {
           method: 'POST',
@@ -24,10 +19,16 @@ export default class Login extends React.Component {
         })
         .then(response => response.json())
         .then(jsonResponse => {
-          console.log(jsonResponse)
+          // deal with player
+          sessionStorage.setItem('userId', jsonResponse.id)
+          sessionStorage.setItem('username', jsonResponse.username)
+          this.props.history.push('/loading')
         })
       }
-
+      const player = {
+        name: event.target[0].value,
+        password: event.target[1].value
+      }
       createPlayer(player)
     } else {
       document.querySelector('.signup').reset()

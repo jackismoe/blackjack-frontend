@@ -1,11 +1,14 @@
 import BASE_URL from '../index'
 
-export const findUser = (player) => {
+const fetchPlayer = playerId => {
   return (dispatch) => {
-    fetch(`${BASE_URL}/players`)
+    fetch(`${BASE_URL}/users/${playerId}`)
     .then(response => response.json())
     .then(jsonResponse => {
       console.log(jsonResponse)
+      dispatch({type: 'ADD_PLAYER', user: jsonResponse})
     })
   }
 }
+
+export default fetchPlayer

@@ -12,6 +12,7 @@ import Login from './components/Login'
 import Bets from './components/Bets'
 import Footer from './components/Footer'
 import Signup from './components/Signup'
+import LoadGame from './components/LoadGame'
 
 const BASE_URL = 'http://localhost:3001'
 const store = createStore(appReducer, applyMiddleware(thunk))
@@ -24,6 +25,7 @@ ReactDOM.render(
     <Router>
       <Route exact path='/' component={Login}/>
       <Route exact path='/signup' component={Signup}/>
+      <Route exact path='/loading' component={LoadGame}/>
       <Route exact path='/play' component={Game}/>
       <Route exact path='/bets' component={Bets}/>
     </Router>
