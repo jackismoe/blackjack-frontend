@@ -1,59 +1,79 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
+class Game extends React.Component {
+  constructor() {
+    super()
+  }
+  
+  firstDeal = () => {
+    const shuffleDeck = () => {
+      let shuffledDeck = this.props.deck.filter(card => card.dealt == false)
+      console.log(shuffledDeck)
+    }
 
+    shuffleDeck()
+  }
 
-export default class Game extends React.Component {
-  // constructor() {
-  //   super()
-  //   this.state = {
-  //     loading: true
-  //   }
-  // }
+  componentDidMount() {
+    debugger
+  }
 
-  // componentDidMount() {
-  //   this.props.fetchPlayer(sessionStorage.userId)
-  // }
 
   render() {
+
     return (
       <div className='game'>
-        <div className='dealer'>
-          dealer
-          <div className='dealerCardOne'>
-            
-          </div>
-          <div className='dealerCardTwo'>
-
-          </div>
-        </div>
         <div className='player'>
-          {sessionStorage.username}
           <div className='playerCardOne'>
 
           </div>
           <div className='playerCardTwo'>
 
           </div>
+          <div className='dealtCards'>
+            
+          </div>
+        </div>
+        <div className='dealer'>
+          <div className='dealerCardOne'>
+
+          </div>
+          <div className='dealerCardTwo'>
+
+          </div>
+          <div className='dealtCards'>
+            
+          </div>
         </div>
         <div className='bets'>
-          <div className='user-bet'>user bet</div>
-          <div className='dealer-bet'>dealer bet</div>
+          <div className='userBet'>
+            <select>
+              <option>10</option>
+              <option>25</option>
+              <option>50</option>
+              <option>100</option>
+              <option>500</option>
+            </select>            
+          </div>
+          <div className='dealerBet'>
+            <select>
+              
+            </select>
+          </div>
         </div>
+        <button className='deal' onClick={() => this.firstDeal()}>Deal</button>
       </div>
     )
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchPlayer: (playerId) => dispatch(fetchPlayer(playerId))
-//   }
-// }
 
-// const mapStateToProps = state => {
-//   return {
-//     player: state.player,
-//   }
-// }
+const mapStateToProps = state => {
+  return {
+    player: state.player,
+    deck: state.deck
+  }
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Game)
+export default connect(mapStateToProps, null)(Game)

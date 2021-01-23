@@ -1,5 +1,6 @@
 .game {
   background-color: black;
+  opacity: .9;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 4fr 1fr;
@@ -62,4 +63,37 @@
   background-size: contain;
   background-repeat: no-repeat;
 
+}
+.deal {
+  position: relative;
+  top: -117%;
+  left: -6%;
+  width: 100px;
+  height: 50px
+}
+.userBet {
+  position: relative;
+  left: 54%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dealerBet {
+  position: relative  ;
+  left: 158%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body {
+  background-image: url('./images/background.png');
+}
+.dealtCards {
+  background-color: white;    
+  width: 500px;
+  height: 100px;
+  position: absolute;
+  top: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }

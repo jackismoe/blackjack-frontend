@@ -2,11 +2,13 @@ import React from 'react'
 import Skeleton from '@yisheng90/react-loading';
 import {connect} from 'react-redux'
 import fetchPlayer from '../actions/fetchPlayer'
+import buildDeck from '../actions/buildDeck'
 
 class LoadGame extends React.Component {
 
   componentDidMount() {
     this.props.fetchPlayer(sessionStorage.userId)
+    this.props.buildDeck()
   }
 
   componentDidUpdate() {
@@ -24,7 +26,8 @@ class LoadGame extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchPlayer: (playerId) => dispatch(fetchPlayer(playerId))
+    fetchPlayer: (playerId) => dispatch(fetchPlayer(playerId)),
+    buildDeck: () => dispatch(buildDeck())
   }
 }
 
