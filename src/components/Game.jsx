@@ -84,7 +84,15 @@ class Game extends React.Component {
     }
 
     const seeWhoWon = () => {
-      alert(`playerTotal is ${playerTotal} and dealer total is ${dealerTotal}`)
+      let winner
+
+      if ((playerTotal > dealerTotal) && (playerTotal <= 21) || (dealerTotal > 21)) {
+        winner = 'player'
+      } else if ((dealerTotal > playerTotal) && (dealerTotal <= 21) || (playerTotal > 21)) {
+        winner = 'dealer'
+      }
+      
+      alert(`playerTotal is ${playerTotal}.\ndealertotal is ${dealerTotal}.\n${winner} has won.`)
       resetDeck()
     }
 
