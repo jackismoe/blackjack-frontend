@@ -1,3 +1,5 @@
+
+
 .game {
   background-color: black;
   opacity: .9;
@@ -14,6 +16,7 @@
   align-items: center;
   
 }
+
 .player {
   color: white;
   display: flex;
@@ -95,7 +98,45 @@
   width: 500px;
   height: 100px;
   position: absolute;
-  top: 50%;
+  top: 56%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+
+.navBar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: darkgray;
+  height: 0%;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  color: white;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: darkgray;
+  margin-top: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.userIcon {
+  background-color: black;
+  border-radius: 90%;
+  width: 2%;
+  margin-right: 7px;
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+  padding-left: 8px;
+  padding-bottom: 15px;
+  padding-right: 8px;
+  }
