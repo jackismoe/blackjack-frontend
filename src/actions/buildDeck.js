@@ -1,163 +1,276 @@
 const buildDeck = () => {
   return (dispatch) => {
-    const deck = {
-      '1': {
+    //club
+    //diamond
+    //heart
+    //spade
+    // ♠♥♦♣
+    const deck = [
+      {
+        name: 'club2',
+        value: 2,
         dealt: false
       },
-      '2': {
+      {
+        name: 'club3',
+        value: 3,
         dealt: false
       },
-      '3': {
+      {
+        name: 'club4',
+        value: 4,
+        dealt: true
+      },
+      {
+        name: 'club5',
+        value: 5,
         dealt: false
       },
-      '4': {
+      {
+        name: 'club6',
+        value: 6,
         dealt: false
       },
-      '5': {
+      {
+        name: 'club7',
+        value: 7,
         dealt: false
       },
-      '6': {
+      {
+        name: 'club8',
+        value: 8,
         dealt: false
       },
-      '7': {
+      {
+        name: 'club9',
+        value: 9,
         dealt: false
       },
-      '8': {
+      {
+        name: 'club10',
+        value: 10,
         dealt: false
       },
-      '9': {
+      {
+        name: 'clubJack',
+        value: 10,
         dealt: false
       },
-      '10': {
+      {
+        name: 'clubQueen',
+        value: 10,
         dealt: false
       },
-      '11': {
+      {
+        name: 'clubKing',
+        value: 10,
         dealt: false
       },
-      '12': {
+      {
+        name: 'clubAce',
+        value: 11,
+        secondaryValue: 1,
         dealt: false
       },
-      '13': {
+      {
+        name: 'diamond2',
+        value: 2,
         dealt: false
       },
-      '14': {
+      {
+        name: 'diamond3',
+        value: 3,
         dealt: false
       },
-      '15': {
+      {
+        name: 'diamond4',
+        value: 4,
         dealt: false
       },
-      '16': {
+      {
+        name: 'diamond5',
+        value: 5,
         dealt: false
       },
-      '17': {
+      {
+        name: 'diamond6',
+        value: 6,
         dealt: false
       },
-      '18': {
+      {
+        name: 'diamond7',
+        value: 7,
         dealt: false
       },
-      '19': {
+      {
+        name: 'diamond8',
+        value: 8,
         dealt: false
       },
-      '20': {
+      {
+        name: 'diamond9',
+        value: 9,
         dealt: false
       },
-      '21': {
+      {
+        name: 'diamond10',
+        value: 10,
         dealt: false
       },
-      '22': {
+      {
+        name: 'diamondJack',
+        value: 10,
         dealt: false
       },
-      '23': {
+      {
+        name: 'diamondQueen',
+        value: 10,
         dealt: false
       },
-      '24': {
+      {
+        name: 'diamondKing',
+        value: 10,
         dealt: false
       },
-      '25': {
+      {
+        name: 'diamondAce',
+        value: 11,
+        secondaryValue: 1,
         dealt: false
       },
-      '26': {
+      {
+        name: 'heart2',
+        value: 2,
         dealt: false
       },
-      '27': {
+      {
+        name: 'heart3',
+        value: 3,
         dealt: false
       },
-      '28': {
+      {
+        name: 'heart4',
+        value: 4,
         dealt: false
       },
-      '29': {
+      {
+        name: 'heart5',
+        value: 5,
         dealt: false
       },
-      '30': {
+      {
+        name: 'heart6',
+        value: 6,
         dealt: false
       },
-      '31': {
+      {
+        name: 'heart7',
+        value: 7,
         dealt: false
       },
-      '32': {
+      {
+        name: 'heart8',
+        value: 8,
         dealt: false
       },
-      '33': {
+      {
+        name: 'heart9',
+        value: 9,
         dealt: false
       },
-      '34': {
+      {
+        name: 'heart10',
+        value: 10,
         dealt: false
       },
-      '35': {
+      {
+        name: 'heartJack',
+        value: 10,
         dealt: false
       },
-      '36': {
+      {
+        name: 'heartQueen',
+        value: 10,
         dealt: false
       },
-      '37': {
+      {
+        name: 'heartKing',
+        value: 10,
         dealt: false
       },
-      '38': {
+      {
+        name: 'heartAce',
+        value: 11,
+        secondaryValue: 1,
         dealt: false
       },
-      '39': {
+      {
+        name: 'spade2',
+        value: 2,
         dealt: false
       },
-      '40': {
+      {
+        name: 'spade3',
+        value: 3,
         dealt: false
       },
-      '41': {
+      {
+        name: 'spade4',
+        value: 4,
         dealt: false
       },
-      '42': {
+      {
+        name: 'spade5',
+        value: 5,
         dealt: false
       },
-      '43': {
+      {
+        name: 'spade6',
+        value: 6,
         dealt: false
       },
-      '44': {
+      {
+        name: 'spade7',
+        value: 7,
         dealt: false
       },
-      '45': {
+      {
+        name: 'spade8',
+        value: 8,
         dealt: false
       },
-      '46': {
+      {
+        name: 'spade9',
+        value: 9,
         dealt: false
       },
-      '47': {
+      {
+        name: 'spade10',
+        value: 10,
         dealt: false
       },
-      '48': {
+      {
+        name: 'spadeJack',
+        value: 10,
         dealt: false
       },
-      '49': {
+      {
+        name: 'spadeQueen',
+        value: 10,
         dealt: false
       },
-      '50': {
+      {
+        name: 'spadeKing',
+        value: 10,
         dealt: false
       },
-      '51': {
-        dealt: false
-      },
-      '52': {
+      {
+        name: 'spadeAce',
+        value: 11,
+        secondaryValue: 1,
         dealt: false
       }
-    }
+    ]
     dispatch({type: 'BUILD_DECK', deck: deck})
   }
 }
