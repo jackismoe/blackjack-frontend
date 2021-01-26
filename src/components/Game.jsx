@@ -9,19 +9,13 @@ class Game extends React.Component {
     let dealerTotal
     const dealerHand = []
     const playerHand = []
-
     const sortDeck = () => {  
       sortedDeck = this.props.deck.filter(card => card.dealt == false)
       cardsInDeck = sortedDeck.length
     }
-
     const resetDeck = () => {
       this.props.deck.map(card => card.dealt = false)
     }
-
-    // first shuffle   
-    sortDeck()
-
     const dealFirstTwo = (hand) => {
       const index = Math.floor(Math.random() * cardsInDeck)
       const card = sortedDeck.find((card, idx) => idx == index)
@@ -33,7 +27,6 @@ class Game extends React.Component {
         dealFirstTwo(hand)
       }
     }
-
     const dealOne = (hand) => {
       const index = Math.floor(Math.random() * cardsInDeck)
       const card = sortedDeck.find((card, idx) => idx == index)
@@ -41,7 +34,6 @@ class Game extends React.Component {
       sortDeck()
       hand.push(card)
     }
-
     const getTotal = (hand) => {
       let workingTotal = 0
       for (let card of hand) {
@@ -49,7 +41,6 @@ class Game extends React.Component {
       }
       return workingTotal
     }
-
     const playerTurn = () => {
       if (playerTotal > 21) {
         alert(`you've busted`)
@@ -65,7 +56,6 @@ class Game extends React.Component {
         }
       }
     }
-
     const dealersTurn = (total, hand) => {
       if (playerTotal > 21) {
         seeWhoWon()
@@ -82,7 +72,6 @@ class Game extends React.Component {
         }
       }
     }
-
     const seeWhoWon = () => {
       let winner
 
@@ -96,26 +85,15 @@ class Game extends React.Component {
       resetDeck()
     }
 
+    sortDeck()
     dealFirstTwo(playerHand)
     dealFirstTwo(dealerHand)
     playerTotal = getTotal(playerHand)
     dealerTotal = getTotal(dealerHand)
     playerTurn()
-    
-
-
-    // show cards on board
-    // const playerCardOneDOM = document.querySelector('.playerCardOne')
-    // const playerCardTwoDOM = document.querySelector('.playerCardTwo')
-    // const dealerCardOneDOM = document.querySelector('.dealerCardOne')
-
-    // playerCardOneDOM.style.backgroundImage = `url(../images/${playerHand[0].name}.png)`
-    // playerCardTwoDOM.style.backgroundImage = `url(../images/${playerHand[1].name}.png)`
-    // dealerCardOneDOM.style.backgroundImage = `url(../images/${dealerHand[0].name}.png)`
   }
 
   render() {
-
     return (
       <div className='game'>
         <div className='player'>
