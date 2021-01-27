@@ -13,6 +13,7 @@ import Bets from './components/Bets'
 import Footer from './components/Footer'
 import Signup from './components/Signup'
 import LoadGame from './components/LoadGame'
+import Menu from './components/Menu'
 
 const BASE_URL = 'http://localhost:3001'
 const store = createStore(appReducer, applyMiddleware(thunk))
@@ -22,6 +23,7 @@ export default BASE_URL
 ReactDOM.render(
   <Provider store={store}>
     <Nav/>
+    <Menu/>
     <Router>
       <Route exact path='/' component={Login}/>
       <Route exact path='/signup' component={Signup}/>

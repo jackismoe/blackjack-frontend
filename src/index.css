@@ -4,7 +4,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 4fr 1fr;
-  height: 950px
+  height: 950px;
+  position: relative;
 }
 .dealer{
   color: white;
@@ -134,4 +135,11 @@
   padding-left: 8px;
   padding-bottom: 15px;
   padding-right: 8px;
+}
+.menu {
+  position: absolute;
+  left: -22%;
+  height: 84%;
+  width: 21%;
+  border: 1px solid black
 }
