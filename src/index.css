@@ -24,7 +24,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.dealerCardOne {
+.dealerCardOneStart {
   background-color: white;
   height: 220px;
   width: 154px;
@@ -34,8 +34,13 @@
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 8%;
+  color: black;
+  font-size: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.dealerCardTwo {
+.dealerCardTwoStart {
   background-color: white;
   height: 220px;
   width: 154px;
@@ -45,8 +50,13 @@
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 8%;
+  color: black;
+  font-size: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.playerCardOne {
+.playerCardOneStart {
   background-color: white;
   height: 220px;
   width: 154px;
@@ -56,8 +66,13 @@
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 8%;
+  color: black;
+  font-size: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.playerCardTwo {
+.playerCardTwoStart {
   background-color: white;
   height: 220px;
   width: 154px;
@@ -67,7 +82,74 @@
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 8%;
+  color: black;
+  font-size: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+.dealerCardOne {
+  background-color: white;
+  height: 220px;
+  width: 154px;
+  border: 2px solid black;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8%;
+  color: black;
+  font-size: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dealerCardTwo {
+  background-color: white;
+  height: 220px;
+  width: 154px;
+  border: 2px solid black;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8%;
+  color: black;
+  font-size: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.playerCardOne {
+  background-color: white;
+  height: 220px;
+  width: 154px;
+  border: 2px solid black;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8%;
+  color: black;
+  font-size: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.playerCardTwo {
+  background-color: white;
+  height: 220px;
+  width: 154px;
+  border: 2px solid black;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 8%;
+  color: black;
+  font-size: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .deal {
   position: relative;
   top: -117%;
