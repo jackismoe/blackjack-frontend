@@ -13,6 +13,10 @@ class Game extends React.Component {
     const playerSlotTwo = document.querySelector('.playerCardTwoStart')
     const dealerSlotOne = document.querySelector('.dealerCardOneStart')
     const dealerSlotTwo = document.querySelector('.dealerCardTwoStart')
+    const playerCardsDOM = document.querySelector('.player .dealtCards')
+    const dealerCardsDOM = document.querySelector('.dealer .dealtCards')
+
+
 
     let sortedDeck
     let cardsInDeck
@@ -20,10 +24,25 @@ class Game extends React.Component {
     let dealerTotal
     const dealerHand = []
     const playerHand = []
+
     const sortDeck = () => {  
       sortedDeck = this.props.deck.filter(card => card.dealt == false)
       cardsInDeck = sortedDeck.length
     }
+
+    const pickUpPlayerCards = () => {
+      let dealtCards = document.querySelectorAll('.player .dealt')
+      for (let card of dealtCards) {
+        card.remove()
+      }
+    }
+    const pickUpDealerCards = () => {
+      let dealtCards = document.querySelectorAll('.dealer .dealt')
+      for (let card of dealtCards) {
+        card.remove()
+      }
+    }
+
     const resetDeck = () => {
       this.props.deck.map(card => card.dealt = false)
       playerSlotOne.className = 'playerCardOneStart'
@@ -34,6 +53,10 @@ class Game extends React.Component {
       playerSlotTwo.innerHTML = ''
       dealerSlotOne.innerHTML = ''
       dealerSlotTwo.innerHTML = ''
+
+      pickUpPlayerCards()
+      pickUpDealerCards()
+      document.querySelector('.deal').style.visibility = 'visible'
     }
     const dealFirstTwo = (hand) => {
       const index = Math.floor(Math.random() * cardsInDeck)
@@ -99,6 +122,32 @@ class Game extends React.Component {
       playerSlotTwo.innerHTML = `<h1>${cardTwoSuit}</h1>${cardTwoValue}</h1>`
     }
 
+    const showTertiaryPlayerCards = (desired) => {
+      let handCopy = Array.from(desired)
+      handCopy.splice(0, 2)
+      pickUpPlayerCards()
+      for (let card of handCopy) {
+        let cardSuitAndValue = getCardSuitAndValue(card)
+        let cardDiv = document.createElement('div')
+        cardDiv.className = 'dealt'
+        cardDiv.innerHTML = `<h1>${cardSuitAndValue[0]} ${cardSuitAndValue[1]}</h1>`
+        playerCardsDOM.appendChild(cardDiv)
+      }
+    }
+
+    const showTertiaryDealerCards = (desired) => {
+      let handCopy = Array.from(desired)
+      handCopy.splice(0, 2)
+      pickUpDealerCards()
+      for (let card of handCopy) {
+        let cardSuitAndValue = getCardSuitAndValue(card)
+        let cardDiv = document.createElement('div')
+        cardDiv.className = 'dealt'
+        cardDiv.innerHTML = `<h1>${cardSuitAndValue[0]} ${cardSuitAndValue[1]}</h1>`
+        dealerCardsDOM.appendChild(cardDiv)
+      }
+    }
+
     const showFirstDealerCard = (hand) => {
       const cardOne = hand[0]
       
@@ -130,6 +179,7 @@ class Game extends React.Component {
       sortDeck()
       hand.push(card)
     }
+
     const getTotal = (hand) => {
       let workingTotal = 0
       for (let card of hand) {
@@ -146,7 +196,11 @@ class Game extends React.Component {
         if (playerHit) {
           dealOne(playerHand)
           playerTotal = getTotal(playerHand)
-          playerTurn()
+          showTertiaryPlayerCards(playerHand)
+          
+          setTimeout(() => {
+            playerTurn()
+          }, 500)
         } else {
           dealersTurn(dealerTotal, dealerHand)
         }
@@ -159,10 +213,11 @@ class Game extends React.Component {
         if (total < 17) {
           dealOne(hand)
           dealerTotal = getTotal(dealerHand)
-          dealersTurn(dealerTotal, hand)
+          showTertiaryDealerCards(dealerHand)
+          setTimeout(dealersTurn(dealerTotal, hand),900)
         } else if (total > 21) {
-          alert('dealer has busted')
           seeWhoWon()
+          setTimeout(alert('dealer has busted'), 900)
         } else {
           seeWhoWon()
         }
@@ -185,6 +240,7 @@ class Game extends React.Component {
       }, 2000)
     }
 
+    document.querySelector('.deal').style.visibility = 'hidden'
     sortDeck()
     dealFirstTwo(playerHand)
     dealFirstTwo(dealerHand)
