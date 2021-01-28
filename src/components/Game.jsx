@@ -250,13 +250,14 @@ class Game extends React.Component {
     showFirstDealerCard(dealerHand)
     window.setTimeout(() => {
       playerTurn()
-    }, 1500)
+    }, 700)
   }
 
   render() {
     return (
       <div className='game'>
         <div className='player'>
+          <div className='availableCash'><h1>${this.props.playerCash}</h1></div>
           <div className='playerCardOneStart'>
 
           </div>
@@ -268,6 +269,7 @@ class Game extends React.Component {
           </div>
         </div>
         <div className='dealer'>
+          <div className='availableCash'><h1>${this.props.dealerCash}</h1></div>
           <div className='dealerCardOneStart'>
 
           </div>
@@ -281,11 +283,11 @@ class Game extends React.Component {
         <div className='bets'>
           <div className='userBet'>
             <select>
-              <option>10</option>
-              <option>25</option>
-              <option>50</option>
-              <option>100</option>
-              <option>500</option>
+              <option value='1000'>$1000</option>
+              <option value='2500'>$2500</option>
+              <option value='5000'>$5000</option>
+              <option value='10000'>$10000</option>
+              <option value='50000'>$500000</option>
             </select>            
           </div>
           <div className='dealerBet'>
@@ -304,6 +306,8 @@ class Game extends React.Component {
 const mapStateToProps = state => {
   return {
     player: state.player,
+    playerCash: state.playerCash,
+    dealerCash: state.dealerCash,
     deck: state.deck
   }
 }
