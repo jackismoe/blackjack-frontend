@@ -1,6 +1,7 @@
 import React from 'react'
 import BASE_URL from '../index'
 import {Link} from 'react-router-dom'
+import Nav from './Nav'
 
 export default class Login extends React.Component {
 
@@ -50,7 +51,7 @@ export default class Login extends React.Component {
           <input type='submit'/>
           <br/>
           <br/>
-          <Link to='/'>Log In</Link>
+          <Link to='/' onClick={Nav.hideMenu}>Log In</Link>
         </form>
       </>
     )

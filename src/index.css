@@ -237,3 +237,6 @@
   position: absolute;
   top: 12%;
 }
+.signup, .login {
+  position: relative;
+}
