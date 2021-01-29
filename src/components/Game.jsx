@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import updateRecord from '../actions/updateRecord'
+import resetDealer from '../actions/resetDealer'
 
 class Game extends React.Component {
 
@@ -55,6 +56,7 @@ class Game extends React.Component {
       pickUpPlayerCards()
       pickUpDealerCards()
       document.querySelector('.deal').style.visibility = 'visible'
+      document.querySelector('.resetDealer').style.visibility = 'visible'
 
       // send game data to backend for W/L column
       this.props.updateRecord(this.props.player, winner)
@@ -106,6 +108,7 @@ class Game extends React.Component {
     }
 
     const showPlayerCards = (hand) => {
+
       const cardOne = hand[0]
       const cardTwo = hand[1]   
       
@@ -120,8 +123,8 @@ class Game extends React.Component {
 
       playerSlotOne.className = 'playerCardOne'
       playerSlotTwo.className = 'playerCardTwo'
-      playerSlotOne.innerHTML = `<h1>${cardOneSuit}</h1>${cardOneValue}</h1>`
-      playerSlotTwo.innerHTML = `<h1>${cardTwoSuit}</h1>${cardTwoValue}</h1>`
+      playerSlotOne.innerHTML = `<h1 class=${cardOneSuit}>${cardOneSuit}</h1>${cardOneValue}</h1>`
+      playerSlotTwo.innerHTML = `<h1 class=${cardTwoSuit}>${cardTwoSuit}</h1>${cardTwoValue}</h1>`
     }
 
     const showTertiaryPlayerCards = (desired) => {
@@ -132,7 +135,7 @@ class Game extends React.Component {
         const cardSuitAndValue = getCardSuitAndValue(card)
         const cardDiv = document.createElement('div')
         cardDiv.className = 'dealt'
-        cardDiv.innerHTML = `<h1>${cardSuitAndValue[0]} ${cardSuitAndValue[1]}</h1>`
+        cardDiv.innerHTML = `<h1 class=${cardSuitAndValue[0]}>${cardSuitAndValue[0]}</h1><h1>${cardSuitAndValue[1]}</h1>`
         playerCardsDOM.appendChild(cardDiv)
       }
     }
@@ -145,7 +148,7 @@ class Game extends React.Component {
         const cardSuitAndValue = getCardSuitAndValue(card)
         const cardDiv = document.createElement('div')
         cardDiv.className = 'dealt'
-        cardDiv.innerHTML = `<h1>${cardSuitAndValue[0]} ${cardSuitAndValue[1]}</h1>`
+        cardDiv.innerHTML = `<h1 class=${cardSuitAndValue[0]}>${cardSuitAndValue[0]}</h1><h1>${cardSuitAndValue[1]}</h1>`
         dealerCardsDOM.appendChild(cardDiv)
       }
     }
@@ -159,7 +162,7 @@ class Game extends React.Component {
       const cardOneValue = cardOneValues[1]
 
       dealerSlotOne.className = 'dealerCardOne'
-      dealerSlotOne.innerHTML = `<h1>${cardOneSuit}</h1>${cardOneValue}</h1>`
+      dealerSlotOne.innerHTML = `<h1 class=${cardOneSuit}>${cardOneSuit}</h1>${cardOneValue}</h1>`
     }
 
     const showSecondDealerCard = (hand) => {
@@ -171,7 +174,7 @@ class Game extends React.Component {
       const cardTwoValue = cardTwoValues[1]
 
       dealerSlotTwo.className = 'dealerCardTwo'
-      dealerSlotTwo.innerHTML = `<h1>${cardTwoSuit}</h1>${cardTwoValue}</h1>`
+      dealerSlotTwo.innerHTML = `<h1 class=${cardTwoSuit}>${cardTwoSuit}</h1>${cardTwoValue}</h1>`
     }
 
     const dealOne = (hand) => {
@@ -191,14 +194,18 @@ class Game extends React.Component {
     }
 
     const playerTurn = () => {
+      let acePresent
+
       if (playerTotal > 21) {
-        alert(`you've busted`)
-        dealersTurn(dealerTotal, dealerHand)
+          alert(`you've busted`)
+          showSecondDealerCard(dealerHand)
+          dealersTurn(dealerTotal, dealerHand)
       } else {
         const playerHit = window.confirm(`your total right now is ${playerTotal}. Would you like to hit?`)
         if (playerHit) {
           dealOne(playerHand)
           playerTotal = getTotal(playerHand)
+
           showTertiaryPlayerCards(playerHand)
           
           setTimeout(() => {
@@ -210,8 +217,11 @@ class Game extends React.Component {
       }
     }
     const dealersTurn = (total, hand) => {
-      if (playerTotal > 21) {
-        seeWhoWon()
+
+      if (dealerTotal > 21) {
+          alert(`dealer has busted`)
+          showSecondDealerCard(dealerHand)
+          seeWhoWon()
       } else {
         if (total < 17) {
           dealOne(hand)
@@ -219,9 +229,11 @@ class Game extends React.Component {
           showTertiaryDealerCards(dealerHand)
           setTimeout(dealersTurn(dealerTotal, hand),900)
         } else if (total > 21) {
+          showSecondDealerCard(dealerHand)
           seeWhoWon()
           setTimeout(alert('dealer has busted'), 900)
         } else {
+          showSecondDealerCard(dealerHand)
           seeWhoWon()
         }
       }
@@ -230,13 +242,12 @@ class Game extends React.Component {
       let winner
 
       if ((playerTotal > dealerTotal) && (playerTotal <= 21) || (dealerTotal > 21)) {
-        winner = 'player'
+        winner = this.props.playerName
       } else if ((dealerTotal > playerTotal) && (dealerTotal <= 21) || (playerTotal > 21)) {
         winner = 'dealer'
       }
-      showSecondDealerCard(dealerHand)
       window.setTimeout(() => {
-        alert(`playerTotal is ${playerTotal}.\ndealertotal is ${dealerTotal}.\n${winner} has won.`)
+        alert(`${this.props.playerName}'s total is ${playerTotal}.\ndealertotal is ${dealerTotal}.\n${winner} has won.`)
       }, 500)
       window.setTimeout(() => {
         resetDeck(winner)
@@ -244,6 +255,7 @@ class Game extends React.Component {
     }
 
     document.querySelector('.deal').style.visibility = 'hidden'
+    document.querySelector('.resetDealer').style.visibility = 'hidden'
 
     //shuffle and deal
     sortDeck()
@@ -264,9 +276,9 @@ class Game extends React.Component {
 
   render() {
     return (
-      <div className='game'>
+      <div className='game' onLoad={this.checkRefresh}>
         <div className='player'>
-          <div className='availableCash'><h1>${this.props.playerCash}</h1></div>
+          {/* <div className='availableCash'><h1>${this.props.playerCash}</h1></div> */}
           <div className='playerCardOneStart'>
 
           </div>
@@ -276,13 +288,15 @@ class Game extends React.Component {
           <div className='dealtCards'>
             
           </div>
-          <div className='playerWins'>
+          <div className='playerRecord'>
             Wins: <h1>{this.props.playerWins}</h1>
             Losses: <h1>{this.props.playerLosses}</h1>
           </div>
+          <h1 className='playerName'>{this.props.playerName}</h1>
         </div>
         <div className='dealer'>
-          <div className='availableCash'><h1>${this.props.dealerCash}</h1></div>
+          <button className='resetDealer' onClick={this.props.resetDealer}>Reset Dealer</button>
+          {/* <div className='availableCash'><h1>${this.props.dealerCash}</h1></div> */}
           <div className='dealerCardOneStart'>
 
           </div>
@@ -292,27 +306,13 @@ class Game extends React.Component {
           <div className='dealtCards'>
             
           </div>
-          <div>
+          <div className='dealerRecord'>
             Wins: <h1>{this.props.dealerWins}</h1>
             Losses: <h1>{this.props.dealerLosses}</h1>
           </div>
+          <h1 className='dealerName'>Dealer</h1>        
         </div>
-        <div className='bets'>
-          <div className='userBet'>
-            <select>
-              <option value='1000'>$1000</option>
-              <option value='2500'>$2500</option>
-              <option value='5000'>$5000</option>
-              <option value='10000'>$10000</option>
-              <option value='50000'>$500000</option>
-            </select>            
-          </div>
-          <div className='dealerBet'>
-            <select>
-              
-            </select>
-          </div>
-        </div>
+
         <button className='deal' onClick={() => this.startGame()}>Deal</button>
       </div>
     )
@@ -322,6 +322,7 @@ class Game extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    playerName: state.playerName,
     player: state.player,
     playerCash: state.playerCash,
     playerWins: state.playerWins,
@@ -335,7 +336,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateRecord: (player, winner) => dispatch(updateRecord(player, winner))
+    updateRecord: (player, winner) => dispatch(updateRecord(player, winner)),
+    resetDealer: () => dispatch(resetDealer())
   }
 }
 
