@@ -6,7 +6,7 @@ const fetchPlayer = playerId => {
     .then(response => response.json())
     .then(jsonResponse => {
       console.log(jsonResponse)
-      dispatch({type: 'ADD_PLAYER', user: jsonResponse})
+      dispatch({type: 'ADD_PLAYER', game: jsonResponse})
     })
   }
 }

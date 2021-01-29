@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import updateRecord from '../actions/updateRecord'
 
 class Game extends React.Component {
 
@@ -8,22 +9,19 @@ class Game extends React.Component {
     const club = '♣'
     const heart = '♥'
     const diamond = '♦'
-
     const playerSlotOne = document.querySelector('.playerCardOneStart')
     const playerSlotTwo = document.querySelector('.playerCardTwoStart')
     const dealerSlotOne = document.querySelector('.dealerCardOneStart')
     const dealerSlotTwo = document.querySelector('.dealerCardTwoStart')
     const playerCardsDOM = document.querySelector('.player .dealtCards')
     const dealerCardsDOM = document.querySelector('.dealer .dealtCards')
-
-
+    const dealerHand = []
+    const playerHand = []
 
     let sortedDeck
     let cardsInDeck
     let playerTotal
     let dealerTotal
-    const dealerHand = []
-    const playerHand = []
 
     const sortDeck = () => {  
       sortedDeck = this.props.deck.filter(card => card.dealt == false)
@@ -31,33 +29,37 @@ class Game extends React.Component {
     }
 
     const pickUpPlayerCards = () => {
-      let dealtCards = document.querySelectorAll('.player .dealt')
+      const dealtCards = document.querySelectorAll('.player .dealt')
       for (let card of dealtCards) {
         card.remove()
       }
     }
     const pickUpDealerCards = () => {
-      let dealtCards = document.querySelectorAll('.dealer .dealt')
+      const dealtCards = document.querySelectorAll('.dealer .dealt')
       for (let card of dealtCards) {
         card.remove()
       }
     }
 
-    const resetDeck = () => {
+    const resetDeck = (winner) => {
       this.props.deck.map(card => card.dealt = false)
       playerSlotOne.className = 'playerCardOneStart'
-      playerSlotTwo.className = 'playerCardTwoStart'
-      dealerSlotOne.className = 'dealerCardOneStart'
-      dealerSlotTwo.className = 'dealerCardTwoStart'
       playerSlotOne.innerHTML = ''
+      playerSlotTwo.className = 'playerCardTwoStart'
       playerSlotTwo.innerHTML = ''
+      dealerSlotOne.className = 'dealerCardOneStart'
       dealerSlotOne.innerHTML = ''
+      dealerSlotTwo.className = 'dealerCardTwoStart'
       dealerSlotTwo.innerHTML = ''
 
       pickUpPlayerCards()
       pickUpDealerCards()
       document.querySelector('.deal').style.visibility = 'visible'
+
+      // send game data to backend for W/L column
+      this.props.updateRecord(this.props.player, winner)
     }
+
     const dealFirstTwo = (hand) => {
       const index = Math.floor(Math.random() * cardsInDeck)
       const card = sortedDeck.find((card, idx) => idx == index)
@@ -74,7 +76,7 @@ class Game extends React.Component {
       let cardSuit
       let cardValue
 
-      let cardDisplay = []
+      const cardDisplay = []
 
       if (card.name.includes('spade')) {
         cardSuit = spade
@@ -123,12 +125,12 @@ class Game extends React.Component {
     }
 
     const showTertiaryPlayerCards = (desired) => {
-      let handCopy = Array.from(desired)
+      const handCopy = Array.from(desired)
       handCopy.splice(0, 2)
       pickUpPlayerCards()
       for (let card of handCopy) {
-        let cardSuitAndValue = getCardSuitAndValue(card)
-        let cardDiv = document.createElement('div')
+        const cardSuitAndValue = getCardSuitAndValue(card)
+        const cardDiv = document.createElement('div')
         cardDiv.className = 'dealt'
         cardDiv.innerHTML = `<h1>${cardSuitAndValue[0]} ${cardSuitAndValue[1]}</h1>`
         playerCardsDOM.appendChild(cardDiv)
@@ -136,12 +138,12 @@ class Game extends React.Component {
     }
 
     const showTertiaryDealerCards = (desired) => {
-      let handCopy = Array.from(desired)
+      const handCopy = Array.from(desired)
       handCopy.splice(0, 2)
       pickUpDealerCards()
       for (let card of handCopy) {
-        let cardSuitAndValue = getCardSuitAndValue(card)
-        let cardDiv = document.createElement('div')
+        const cardSuitAndValue = getCardSuitAndValue(card)
+        const cardDiv = document.createElement('div')
         cardDiv.className = 'dealt'
         cardDiv.innerHTML = `<h1>${cardSuitAndValue[0]} ${cardSuitAndValue[1]}</h1>`
         dealerCardsDOM.appendChild(cardDiv)
@@ -187,6 +189,7 @@ class Game extends React.Component {
       }
       return workingTotal
     }
+
     const playerTurn = () => {
       if (playerTotal > 21) {
         alert(`you've busted`)
@@ -236,18 +239,24 @@ class Game extends React.Component {
         alert(`playerTotal is ${playerTotal}.\ndealertotal is ${dealerTotal}.\n${winner} has won.`)
       }, 500)
       window.setTimeout(() => {
-        resetDeck()
+        resetDeck(winner)
       }, 2000)
     }
 
     document.querySelector('.deal').style.visibility = 'hidden'
+
+    //shuffle and deal
     sortDeck()
     dealFirstTwo(playerHand)
     dealFirstTwo(dealerHand)
     playerTotal = getTotal(playerHand)
     dealerTotal = getTotal(dealerHand)
+
+    //show cards on table
     showPlayerCards(playerHand)
     showFirstDealerCard(dealerHand)
+
+    //start game
     window.setTimeout(() => {
       playerTurn()
     }, 700)
@@ -267,6 +276,10 @@ class Game extends React.Component {
           <div className='dealtCards'>
             
           </div>
+          <div className='playerWins'>
+            Wins: <h1>{this.props.playerWins}</h1>
+            Losses: <h1>{this.props.playerLosses}</h1>
+          </div>
         </div>
         <div className='dealer'>
           <div className='availableCash'><h1>${this.props.dealerCash}</h1></div>
@@ -278,6 +291,10 @@ class Game extends React.Component {
           </div>
           <div className='dealtCards'>
             
+          </div>
+          <div>
+            Wins: <h1>{this.props.dealerWins}</h1>
+            Losses: <h1>{this.props.dealerLosses}</h1>
           </div>
         </div>
         <div className='bets'>
@@ -307,9 +324,19 @@ const mapStateToProps = state => {
   return {
     player: state.player,
     playerCash: state.playerCash,
+    playerWins: state.playerWins,
+    playerLosses: state.playerLosses,
+    dealerWins: state.dealerWins,
+    dealerLosses: state.dealerLosses,
     dealerCash: state.dealerCash,
     deck: state.deck
   }
 }
 
-export default connect(mapStateToProps, null)(Game)
+const mapDispatchToProps = dispatch => {
+  return {
+    updateRecord: (player, winner) => dispatch(updateRecord(player, winner))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Game)
