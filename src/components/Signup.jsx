@@ -3,7 +3,7 @@ import BASE_URL from '../index'
 import {Link} from 'react-router-dom'
 import Nav from './Nav'
 
-export default class Login extends React.Component {
+export default class Signup extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
@@ -21,7 +21,7 @@ export default class Login extends React.Component {
         .then(response => response.json())
         .then(jsonResponse => {
           // deal with player
-          sessionStorage.setItem('userId', jsonResponse.id)
+          sessionStorage.setItem('userId', jsonResponse.userId)
           sessionStorage.setItem('username', jsonResponse.username)
           this.props.history.push('/loading')
         })
