@@ -246,7 +246,9 @@
   top: 12%;
 }
 .signup, .login {
-  position: relative;
+  position: absolute;
+  top: 40%;
+  left: 45%
 }
 .playerRecord, .dealerRecord {
   position: absolute;
@@ -279,3 +281,4 @@
 .♠, .♣ {
   color: rgb(34,34,34)
 }
+

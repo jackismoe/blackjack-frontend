@@ -21,8 +21,8 @@ class Game extends React.Component {
 
     let sortedDeck
     let cardsInDeck
-    let playerTotal
-    let dealerTotal
+    let playerTotal = 0
+    let dealerTotal = 0
 
     const sortDeck = () => {  
       sortedDeck = this.props.deck.filter(card => card.dealt == false)
@@ -189,17 +189,18 @@ class Game extends React.Component {
       let workingTotal = 0
       for (let card of hand) {
         workingTotal += card.value
+        console.log('value ' + card.value)
+        console.log('total ' + workingTotal)
       }
       return workingTotal
     }
 
     const playerTurn = () => {
-      let acePresent
 
       if (playerTotal > 21) {
           alert(`you've busted`)
           showSecondDealerCard(dealerHand)
-          dealersTurn(dealerTotal, dealerHand)
+          seeWhoWon()
       } else {
         const playerHit = window.confirm(`your total right now is ${playerTotal}. Would you like to hit?`)
         if (playerHit) {
@@ -227,7 +228,7 @@ class Game extends React.Component {
           dealOne(hand)
           dealerTotal = getTotal(dealerHand)
           showTertiaryDealerCards(dealerHand)
-          setTimeout(dealersTurn(dealerTotal, hand),900)
+          setTimeout(dealersTurn(dealerTotal, hand), 1500)
         } else if (total > 21) {
           showSecondDealerCard(dealerHand)
           seeWhoWon()
@@ -251,7 +252,7 @@ class Game extends React.Component {
       }, 500)
       window.setTimeout(() => {
         resetDeck(winner)
-      }, 2000)
+      }, 1000)
     }
 
     document.querySelector('.deal').style.visibility = 'hidden'
