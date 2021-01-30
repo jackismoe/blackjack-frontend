@@ -51,7 +51,7 @@ export default class Login extends React.Component {
           <input type='submit'/>
           <br/>
           <br/>
-          <Link to='/' onClick={Nav.hideMenu}>Log In</Link>
+          <Link to='/' onClick={Nav.closeMenu}>Log In</Link>
         </form>
       </>
     )

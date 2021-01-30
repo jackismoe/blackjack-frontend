@@ -9,7 +9,6 @@ import thunk from 'redux-thunk'
 import Game from './components/Game'
 import Nav from './components/Nav'
 import Login from './components/Login'
-import Bets from './components/Bets'
 import Footer from './components/Footer'
 import Signup from './components/Signup'
 import LoadGame from './components/LoadGame'
@@ -23,13 +22,12 @@ export default BASE_URL
 ReactDOM.render(
   <Provider store={store}>
     <Nav/>
-    <Menu/>
     <Router>
+      <Route path='/' component={Menu}/>
       <Route exact path='/' component={Login}/>
       <Route exact path='/signup' component={Signup}/>
       <Route exact path='/loading' component={LoadGame}/>
       <Route exact path='/play' component={Game}/>
-      <Route exact path='/bets' component={Bets}/>
     </Router>
     <Footer/>
   </Provider>,

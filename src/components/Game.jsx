@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import updateRecord from '../actions/updateRecord'
 import resetDealer from '../actions/resetDealer'
 
+
 class Game extends React.Component {
 
   startGame = () => {
@@ -338,7 +339,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     updateRecord: (player, winner) => dispatch(updateRecord(player, winner)),
-    resetDealer: () => dispatch(resetDealer())
+    resetDealer: () => dispatch(resetDealer()),
   }
 }
 

@@ -53,7 +53,7 @@ export default class Login extends React.Component {
           <input type='submit'/>
           <br/>
           <br/>
-          <Link to='/signup' onClick={Nav.hideMenu}>Sign Up</Link>
+          <Link to='/signup' onClick={Nav.closeMenu}>Sign Up</Link>
         </form>
       </>
     )

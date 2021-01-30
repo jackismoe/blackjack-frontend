@@ -1,4 +1,4 @@
-const appReducer = (state = {playerName: 'player', player: 0, deck: [], playerCash: 0, dealerCash: 0, playerWins: 0, playerLosses: 0, dealerWins: 0, dealerLosses: 0}, action) => {
+const appReducer = (state = {menuOpen: false, playerName: 'player', player: 0, deck: [], playerCash: 0, dealerCash: 0, playerWins: 0, playerLosses: 0, dealerWins: 0, dealerLosses: 0}, action) => {
   switch (action.type) {
     case 'ADD_PLAYER':
       return {
@@ -30,6 +30,19 @@ const appReducer = (state = {playerName: 'player', player: 0, deck: [], playerCa
         ...state,
         dealerWins: action.dealer.wins,
         dealerLosses: action.dealer.losses
+      }
+    case 'LOGOUT':
+      return {
+        menuOpen: false, 
+        playerName: 'player', 
+        player: 0, 
+        deck: [], 
+        playerCash: 0, 
+        dealerCash: 0, 
+        playerWins: 0, 
+        playerLosses: 0, 
+        dealerWins: 0, 
+        dealerLosses: 0
       }
     // eslint-disable-next-line
     default:
