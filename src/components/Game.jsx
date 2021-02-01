@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import updateRecord from '../actions/updateRecord'
 import resetDealer from '../actions/resetDealer'
+import Player from './Player'
+import Dealer from './Dealer'
 
 
 class Game extends React.Component {
@@ -197,7 +199,6 @@ class Game extends React.Component {
     }
 
     const playerTurn = () => {
-
       if (playerTotal > 21) {
           alert(`you've busted`)
           showSecondDealerCard(dealerHand)
@@ -210,9 +211,7 @@ class Game extends React.Component {
 
           showTertiaryPlayerCards(playerHand)
           
-          setTimeout(() => {
-            playerTurn()
-          }, 500)
+          setTimeout(playerTurn(), 500)
         } else {
           dealersTurn(dealerTotal, dealerHand)
         }
@@ -279,42 +278,8 @@ class Game extends React.Component {
   render() {
     return (
       <div className='game' onLoad={this.checkRefresh}>
-        <div className='player'>
-          {/* <div className='availableCash'><h1>${this.props.playerCash}</h1></div> */}
-          <div className='playerCardOneStart'>
-
-          </div>
-          <div className='playerCardTwoStart'>
-
-          </div>
-          <div className='dealtCards'>
-            
-          </div>
-          <div className='playerRecord'>
-            Wins: <h1>{this.props.playerWins}</h1>
-            Losses: <h1>{this.props.playerLosses}</h1>
-          </div>
-          <h1 className='playerName'>{this.props.playerName}</h1>
-        </div>
-        <div className='dealer'>
-          <button className='resetDealer' onClick={this.props.resetDealer}>Reset Dealer</button>
-          {/* <div className='availableCash'><h1>${this.props.dealerCash}</h1></div> */}
-          <div className='dealerCardOneStart'>
-
-          </div>
-          <div className='dealerCardTwoStart'>
-
-          </div>
-          <div className='dealtCards'>
-            
-          </div>
-          <div className='dealerRecord'>
-            Wins: <h1>{this.props.dealerWins}</h1>
-            Losses: <h1>{this.props.dealerLosses}</h1>
-          </div>
-          <h1 className='dealerName'>Dealer</h1>        
-        </div>
-
+        <Player playerWins={this.props.playerWins} playerLosses={this.props.playerLosses} playerName={this.props.playerName}/>
+        <Dealer resetDealer={this.props.resetDealer} dealerWins={this.props.dealerWins} dealerLosses={this.props.dealerLosses}/>
         <button className='deal' onClick={() => this.startGame()}>Deal</button>
       </div>
     )
