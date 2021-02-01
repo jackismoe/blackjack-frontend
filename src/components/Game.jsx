@@ -211,7 +211,9 @@ class Game extends React.Component {
 
           showTertiaryPlayerCards(playerHand)
           
-          setTimeout(playerTurn(), 500)
+          setTimeout(() => {
+            playerTurn()
+          }, 1000)
         } else {
           dealersTurn(dealerTotal, dealerHand)
         }

@@ -7,8 +7,6 @@ export default class Login extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    console.log(event.target[0].value)
-    console.log(event.target[1].value)
 
     const findPlayer = (player) => {
       fetch(`${BASE_URL}/sessions`, {
