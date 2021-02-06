@@ -21,6 +21,7 @@ export default class Login extends React.Component {
       .then(response => response.json())
       .then(jsonResponse => {
         // deal with player
+        console.log(jsonResponse)
         sessionStorage.setItem('userId', jsonResponse.id)
         sessionStorage.setItem('username', jsonResponse.username)
         this.props.history.push('/loading')
