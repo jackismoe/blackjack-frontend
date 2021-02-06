@@ -14,7 +14,7 @@ import Signup from './components/Signup'
 import LoadGame from './components/LoadGame'
 import Menu from './components/Menu'
 
-const BASE_URL = 'https://black-jack-backend.herokuapp.com'
+const BASE_URL = 'http://black-jack-backend.herokuapp.com'
 const store = createStore(appReducer, applyMiddleware(thunk))
 
 export default BASE_URL
