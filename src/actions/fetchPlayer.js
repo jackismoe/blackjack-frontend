@@ -5,6 +5,7 @@ const fetchPlayer = playerId => {
     fetch(`${BASE_URL}/users/${playerId}`)
     .then(response => response.json())
     .then(jsonResponse => {
+      console.log(jsonResponse)
       dispatch({type: 'ADD_PLAYER', game: jsonResponse})
     })
   }

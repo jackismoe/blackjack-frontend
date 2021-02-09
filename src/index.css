@@ -1,311 +1,655 @@
-@font-face {
-  font-family: 'Casino';
-  src: url('./fonts/CasinoFlatShadow.ttf') format('ttf')
+ @media only screen and (min-width: 1200px){
+  @font-face {
+    font-family: 'Casino';
+    src: url('./fonts/CasinoFlatShadow.ttf') format('ttf')
+  }
+
+  #root {
+    font-family: Casino;
+  }
+  .game {
+    background-color: black;
+    opacity: .9;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 4fr 1fr;
+    height: 950px;
+    position: relative;
+  }
+  .dealer{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .player {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .bets {
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .dealerCardOneStart {
+    background-color: white;
+    height: 220px;
+    width: 154px;
+    border: 2px solid black;
+    background-image: url('./images/card.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    color: black;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dealerCardTwoStart {
+    background-color: white;
+    height: 220px;
+    width: 154px;
+    border: 2px solid black;
+    background-image: url('./images/card.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    color: black;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .playerCardOneStart {
+    background-color: white;
+    height: 220px;
+    width: 154px;
+    border: 2px solid black;
+    background-image: url('./images/card.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    color: black;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .playerCardTwoStart {
+    background-color: white;
+    height: 220px;
+    width: 154px;
+    border: 2px solid black;
+    background-image: url('./images/card.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    color: black;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dealerCardOne {
+    background-color: white;
+    height: 220px;
+    width: 154px;
+    border: 2px solid black;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    color: black;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dealerCardTwo {
+    background-color: white;
+    height: 220px;
+    width: 154px;
+    border: 2px solid black;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    color: black;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .playerCardOne {
+    background-color: white;
+    height: 220px;
+    width: 154px;
+    border: 2px solid black;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    color: black;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .playerCardTwo {
+    background-color: white;
+    height: 220px;
+    width: 154px;
+    border: 2px solid black;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    color: black;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .deal {
+    position: relative;
+    top: -117%;
+    left: 92%;
+    width: 100px;
+    height: 50px
+  }
+  .userBet {
+    position: relative;
+    left: 54%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dealerBet {
+    position: relative  ;
+    left: 158%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .dealtCards {
+    width: 440px;
+    height: 150px;
+    position: absolute;
+    top: 56%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .navBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: darkgray;
+    height: 0%;
+    margin-bottom: 15px;
+    color: white;
+    padding-top: 15px;
+    padding-bottom: 54px;
+  }
+  .hamburger {
+    position: absolute;
+    top: 1.5%
+  }
+  .footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    background-color: darkgray;
+    margin-top: 15px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+  }
+  .userIcon {
+    background-color: black;
+    border-radius: 50%;
+    width: 2%;
+    margin-right: 7px;
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+    padding-left: 8px;
+    padding-bottom: 15px;
+    padding-right: 8px;
+    position: absolute;
+    top: 1.5%;
+    right: 1%;
+  }
+  .menu {
+    position: absolute;
+    left: 4%;
+    top: 1.8%;
+    height: 4%;
+    width: 6%;
+    border: 1px solid black;
+    visibility: hidden;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    border-radius: 20%;
+  }
+  .dealt { 
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8%;
+  }
+  .availableCash {
+    position: absolute;
+    top: 12%;
+  }
+  .signup, .login {
+    position: absolute;
+    top: 28%;
+    left: 34%;
+    padding: 11%;
+    background-color: black;
+    margin: 0%;
+    color: white;
+    border-radius: 20%;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .playerRecord, .dealerRecord {
+    position: absolute;
+  }
+
+  .playerRecord {
+    top: 30%;
+    left: 9%;
+  }
+  .dealerRecord {
+    top: 30%;
+    right: 9%;
+  }
+  .playerName {
+    position: absolute;
+    top: 75%
+  }
+  .dealerName {
+    position: absolute;
+    top: 75%
+  }
+  .resetDealer {
+    position: absolute;
+    top: 53%;
+    left: 46.17%
+  }
+  .♥, .♦ {
+    color: red;
+  }
+  .♠, .♣ {
+    color: rgb(34,34,34)
+  }
+  .title { 
+    position: absolute;
+    left: 46%;
+    top: 1.5%;
+  }
 }
 
-#root {
-  font-family: Casino;
-}
-.game {
-  background-color: black;
-  opacity: .9;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 4fr 1fr;
-  height: 950px;
-  position: relative;
-}
-.dealer{
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.player {
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.bets {
-  color: white;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.dealerCardOneStart {
-  background-color: white;
-  height: 220px;
-  width: 154px;
-  border: 2px solid black;
-  background-image: url('./images/card.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 8%;
-  color: black;
-  font-size: 33px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.dealerCardTwoStart {
-  background-color: white;
-  height: 220px;
-  width: 154px;
-  border: 2px solid black;
-  background-image: url('./images/card.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 8%;
-  color: black;
-  font-size: 33px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.playerCardOneStart {
-  background-color: white;
-  height: 220px;
-  width: 154px;
-  border: 2px solid black;
-  background-image: url('./images/card.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 8%;
-  color: black;
-  font-size: 33px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.playerCardTwoStart {
-  background-color: white;
-  height: 220px;
-  width: 154px;
-  border: 2px solid black;
-  background-image: url('./images/card.png');
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 8%;
-  color: black;
-  font-size: 33px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.dealerCardOne {
-  background-color: white;
-  height: 220px;
-  width: 154px;
-  border: 2px solid black;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 8%;
-  color: black;
-  font-size: 33px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.dealerCardTwo {
-  background-color: white;
-  height: 220px;
-  width: 154px;
-  border: 2px solid black;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 8%;
-  color: black;
-  font-size: 33px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.playerCardOne {
-  background-color: white;
-  height: 220px;
-  width: 154px;
-  border: 2px solid black;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 8%;
-  color: black;
-  font-size: 33px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.playerCardTwo {
-  background-color: white;
-  height: 220px;
-  width: 154px;
-  border: 2px solid black;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 8%;
-  color: black;
-  font-size: 33px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+@media only screen and (min-width: 600px) {
 
+  @font-face {
+    font-family: 'Casino';
+    src: url('./fonts/CasinoFlatShadow.ttf') format('ttf')
+  }
 
-.deal {
-  position: relative;
-  top: -117%;
-  left: 92%;
-  width: 100px;
-  height: 50px
-}
-.userBet {
-  position: relative;
-  left: 54%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.dealerBet {
-  position: relative  ;
-  left: 158%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  #root {
+    font-family: Casino;
+    font-size: 30px;
+  }
+  a {
+    color: black;
+    text-decoration: none;
 
-.dealtCards {
-  width: 440px;
-  height: 150px;
-  position: absolute;
-  top: 56%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-.navBar{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  background-color: darkgray;
-  height: 0%;
-  margin-bottom: 15px;
-  color: white;
-  padding-top: 15px;
-  padding-bottom: 54px;
-}
-.hamburger {
-  position: absolute;
-  top: 1.5%
-}
-.footer {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100%;
-  background-color: darkgray;
-  margin-top: 15px;
-  padding-top: 15px;
-  padding-bottom: 25px;
-  position: absolute;
-  bottom: 0%;
-  left: 0%;
-}
-.userIcon {
-  background-color: black;
-  border-radius: 50%;
-  width: 2%;
-  margin-right: 7px;
-  display: flex;
-  justify-content: center;
-  padding-top: 15px;
-  padding-left: 8px;
-  padding-bottom: 15px;
-  padding-right: 8px;
-  position: absolute;
-  top: 1.5%;
-  right: 1%;
-}
-.menu {
-  position: absolute;
-  left: 4%;
-  top: 1.8%;
-  height: 4%;
-  width: 6%;
-  border: 1px solid black;
-  visibility: hidden;
-  background-color: black;
-  display: flex;
-  justify-content: center;
-  border-radius: 20%;
-}
-.dealt { 
-  color: black;
-  background-color: white;
-  border: 1px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8%;
-}
-.availableCash {
-  position: absolute;
-  top: 12%;
-}
-.signup, .login {
-  position: absolute;
-  top: 28%;
-  left: 34%;
-  padding: 11%;
-  background-color: black;
-  margin: 0%;
-  color: white;
-  border-radius: 20%;
-}
-a {
-  color: white;
-  text-decoration: none;
-  cursor: pointer;
-}
-.playerRecord, .dealerRecord {
-  position: absolute;
-}
+  }
+  #root {
+    height: 99.2%;
+    width: 98.6%;
+    position: absolute;
+    background-color: black;
+  }
+  
+  .login, .signup {
+    position: absolute;
+    height: 25%;
+    width: 25%;
+    left: 34%;
+    top: 33%;
+    color: white
+    
+  }
 
-.playerRecord {
-  top: 30%;
-  left: 9%;
-}
-.dealerRecord {
-  top: 30%;
-  right: 9%;
-}
-.playerName {
-  position: absolute;
-  top: 75%
-}
-.dealerName {
-  position: absolute;
-  top: 75%
-}
-.resetDealer {
-  position: absolute;
-  top: 53%;
-  left: 46.17%
-}
-.♥, .♦ {
-  color: red;
-}
-.♠, .♣ {
-  color: rgb(34,34,34)
-}
-.title { 
-  position: absolute;
-  left: 46%;
-  top: 1.5%;
+  input {
+    width: 300px;
+    height: 80px;
+    font-size: 30px;
+  }
+
+  input[type='submit'] {
+    height: 50px;
+    width: 120px;
+    font-size: 30px;
+    position: relative;
+    margin-top: 25px;
+  }
+
+  label {
+    margin-top: 25px;
+  }
+
+  .navBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: gray;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0%;
+    background-color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 5%;
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+  }
+
+  .menu {
+    visibility: hidden;
+  }
+
+   .dealerCardOneStart {
+    background-color: white;
+    height: 220px;
+    width: 154px;
+    border: 2px solid black;
+    background-image: url('./images/card.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    color: black;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dealerCardTwoStart {
+    background-color: white;
+    height: 220px;
+    width: 154px;
+    border: 2px solid black;
+    background-image: url('./images/card.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    color: black;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .playerCardOneStart {
+    background-color: white;
+    height: 220px;
+    width: 154px;
+    border: 2px solid black;
+    background-image: url('./images/card.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    color: black;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .playerCardTwoStart {
+    background-color: white;
+    height: 220px;
+    width: 154px;
+    border: 2px solid black;
+    background-image: url('./images/card.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    color: black;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dealerCardOne {
+    background-color: white;
+    height: 220px;
+    width: 154px;
+    border: 2px solid black;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    color: black;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dealerCardTwo {
+    background-color: white;
+    height: 220px;
+    width: 154px;
+    border: 2px solid black;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    color: black;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .playerCardOne {
+    background-color: white;
+    height: 220px;
+    width: 154px;
+    border: 2px solid black;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    color: black;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .playerCardTwo {
+    background-color: white;
+    height: 220px;
+    width: 154px;
+    border: 2px solid black;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8%;
+    color: black;
+    font-size: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .playerRecord {
+    position: absolute;
+    top: 4%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    color: white
+  }
+  .dealerRecord {
+    position: absolute;
+    bottom: 4%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    color: white
+  }
+  .playerName {
+    position: absolute;
+    top: 4%;
+    color: white
+  }
+  .dealerName {
+    position: absolute;
+    bottom: 4%;
+    color: white
+  }
+
+  .playerCardOneStart, .playerCardOne {
+    position: absolute;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 40%;
+    top: 13%;
+    left: 10%;
+    height: 25%;
+    background-size: cover;
+    font-size: 100px;
+  }
+
+  .playerCardTwoStart, .playerCardTwo {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    top: 13%;
+    left: 51%;
+    height: 25%;
+    background-size: cover;
+    font-size: 100px;
+  }
+
+  .dealerCardOneStart, .dealerCardOne {
+    position: absolute;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 40%;
+    bottom: 13%;
+    left: 10%;
+    height: 25%;
+    background-size: cover;
+    font-size: 100px;
+
+  }
+
+  .dealerCardTwoStart, .dealerCardTwo {
+    position: absolute;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 40%;
+    bottom: 13%;
+    left: 51%;
+    height: 25%;
+    background-size: cover;
+    font-size: 100px;
+  }
+  .deal {
+    position: absolute;
+    top: 46%;
+    left: 41%;
+    height: 4%;
+    width: 18%;
+    font-size: 30px;
+  }
+  .resetDealer {
+    position: absolute;
+    top: 52%;
+    left: 41%;
+    height: 2%;
+    width: 18%;
+    font-size: 20px;
+  }
+  .player, .dealer {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .♥, .♦ {
+    color: red;
+  }
+  .♠, .♣ {
+    color: rgb(34,34,34)
+  }
+  .dealt {
+    background-color: white;
+    width: 103%;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    color: black;
+    border-radius: 8%;
+    border: 2px solid black;
+  }
+
+  .dealtCards {
+    width: 440px;
+    height: 150px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: 1px;
+  }
+
+  .player > .dealtCards {
+    position: absolute;
+    top: 39%
+  }
+  
+  .dealer > .dealtCards {
+    position: absolute;
+    bottom: 40%
+  }
 }

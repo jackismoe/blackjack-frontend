@@ -202,6 +202,7 @@ class Game extends React.Component {
       if (playerTotal > 21) {
           alert(`you've busted`)
           showSecondDealerCard(dealerHand)
+          debugger
           seeWhoWon()
       } else {
         const playerHit = window.confirm(`your total right now is ${playerTotal}. Would you like to hit?`)
@@ -224,6 +225,7 @@ class Game extends React.Component {
       if (dealerTotal > 21) {
           alert(`dealer has busted`)
           showSecondDealerCard(dealerHand)
+          debugger
           seeWhoWon()
       } else {
         if (total < 17) {
@@ -233,10 +235,12 @@ class Game extends React.Component {
           setTimeout(dealersTurn(dealerTotal, hand), 1500)
         } else if (total > 21) {
           showSecondDealerCard(dealerHand)
+          debugger
           seeWhoWon()
           setTimeout(alert('dealer has busted'), 900)
         } else {
           showSecondDealerCard(dealerHand)
+          debugger
           seeWhoWon()
         }
       }

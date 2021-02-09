@@ -24,9 +24,9 @@ export default class Nav extends React.Component {
   render() {
     return (
       <div className='navBar'>
-        <div onClick={this.handleMenu} className='hamburger'><Hamburger/></div>
+        <div onClick={this.handleMenu} className='hamburger'></div>
         <div className='title'><h3>reactJack</h3></div>
-        <div className='userIcon'>•</div>
+        <div className='userIcon'></div>
       </div>
     )
   }

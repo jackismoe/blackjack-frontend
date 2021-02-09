@@ -48,7 +48,7 @@ export default class Signup extends React.Component {
           <input type='password'/><br/>
           <label>Confirm Password</label><br/>
           <input type='password'/><br/>
-          <input type='submit'/>
+          <input class='submit' type='submit'/>
           <br/>
           <br/>
           <Link to='/' onClick={Nav.closeMenu}>Log In</Link>
