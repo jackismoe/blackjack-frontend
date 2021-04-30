@@ -9,6 +9,7 @@ export default class Login extends React.Component {
     event.preventDefault()
 
     const findPlayer = (player) => {
+      this.props.history.push('/loading')
       fetch(`${BASE_URL}/sessions`, {
         method: 'POST',
         headers: {
@@ -24,7 +25,6 @@ export default class Login extends React.Component {
         console.log(jsonResponse)
         sessionStorage.setItem('userId', jsonResponse.id)
         sessionStorage.setItem('username', jsonResponse.username)
-        this.props.history.push('/loading')
       })
       .catch(error => {
         document.querySelector('.login').reset()
