@@ -7,7 +7,6 @@ import Dealer from './Dealer'
 
 
 class Game extends React.Component {
-
   startGame = () => {
     const spade = '♠'
     const club = '♣'
@@ -220,6 +219,7 @@ class Game extends React.Component {
         }
       }
     }
+
     const dealersTurn = (total, hand) => {
 
       if (dealerTotal > 21) {
@@ -245,6 +245,7 @@ class Game extends React.Component {
         }
       }
     }
+    
     const seeWhoWon = () => {
       let winner
 
